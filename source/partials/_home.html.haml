@@ -1,0 +1,8 @@
+%section.home
+  .slides
+    - %w(01 02 03 04 05 06 07 08 09 10).each do |s|
+      -#.slide{:id => "slide-#{s}", :style => "background-image: url(/images/slides/img#{s}.jpg)" }
+      =image_tag "/images/slides/img#{s}.jpg", :class=> 'slide'
+  .curtain
+  = partial 'partials/lang-switch'
+  = partial 'partials/logo'

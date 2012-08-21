@@ -1,0 +1,19 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
+    %title Kenny Risso
+    %meta{:content => "Kenny Risso", :name => "description"}/
+    %meta{:content => "diegodorado@gmail.com", :name => "author"}/
+    / Mobile viewport optimized: j.mp/bplateviewport
+    %meta{:name => "viewport", :content => "width=device-width; initial-scale=1.0; maximum-scale=1.0;"}
+    / Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    = stylesheet_link_tag "application"
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv'    
+  %body{:class=>@lang}
+    #content
+      = yield
+    = javascript_include_tag 'application'

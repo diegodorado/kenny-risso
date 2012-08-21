@@ -1,0 +1,236 @@
+@import "compass"
+@import "partials/fonts"
+@import "partials/sprites"
+
++global-reset
+
+$red: #FF0000
+$red2: #B80024
+$grey: #4D4D5E
+$lite-grey: #DCDCDC
+
+
+body
+  a
+    text-decoration: none
+    +transition(color 0.5s ease)
+
+section
+  width: 100%
+  overflow: hidden
+  text-align: center
+
+  .center-column
+    width: 600px
+    margin: 0 auto
+  
+
+
+
+section.home
+  background: #0D1324
+  color: $lite-grey
+  position: fixed
+  z-index: 10
+  a
+    color: $lite-grey
+  a:hover
+    color: $red
+  .slides
+    +transition(top 0.5s ease)  
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 20
+    .slide
+      +transparent
+      display: none
+      position: absolute
+      top: 0
+      left: 0
+      z-index: 30
+      width: 100%
+      height: auto
+
+      &.prev
+        display: block
+        z-index: 31
+      &.next
+        +transition(opacity 2s ease)
+        display: block
+        z-index: 32 //current over prev!
+  &.tall
+    .slides
+      .slide
+        width: auto
+        height: 100%
+  .curtain
+    display: none
+    background: image-url("curtain.png") repeat
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 40
+
+  .lang-switch,.logo
+    +transition(all 0.6s ease)
+    display: none
+    position: absolute
+    width: 100%
+    left: 0
+
+  .lang-switch
+    top: 48px
+    z-index: 50
+    .current
+      color: $red
+
+  .logo
+    bottom: 163px
+    z-index: 60
+
+
+
+
+
+section.contact
+  background: #fff image-url("contact-bg.png") repeat
+  color: $grey
+  position: absolute
+  z-index: 100
+  top: 10000px //enough... fixed later via js
+  .center-column
+    position: relative
+  a
+    color: $grey  
+  a:hover
+    color: $red2
+
+  .logo
+    margin-top: 64px
+      
+  .lang-switch
+    margin-top: 38px
+    .current
+      color: $red2
+  .text
+    margin-top: 36px
+    @extend .didactic
+    font-size: 12px
+    line-height: 21px
+    p
+      margin-bottom: 22px
+      text-align: justify
+      a
+        color: $red2
+  .customers
+    border-top: 4px solid #d7dbde
+    border-bottom: 4px solid #d7dbde
+    background: #fff
+    margin-top: 41px
+    ul
+      +horizontal-list
+      padding: 64px 47px 70px 55px
+      li
+        position: relative
+        width: 124px
+        height: 78px
+        padding: 0
+        i
+          position: absolute
+          background-color: #fff //ie7 renders borders
+          top: 0
+          left: 0
+          z-index: 100
+        span
+          @extend .ubuntu
+          font-size: 13px
+          line-height: 17px
+          position: absolute
+          text-align: center
+          display: block
+          width: 200px
+          bottom: 0
+          left: -37px
+          color: $red2
+          text-transform: capitalize
+          z-index: 101
+        i, span
+          +transition(opacity 0.5s linear)
+        .red, span
+          +transparent
+        .grey
+          +opaque
+        &:hover 
+          .red, span
+            +opaque
+          .grey
+            +transparent
+  .address
+    margin-top: 53px
+    a
+      +inline-block
+  .phones
+    margin-top: 24px
+    .key
+      color: $red2
+    
+  .email
+    margin-top: 24px
+    margin-bottom: 138px
+    .icons-envelope
+      margin-right: 5px
+
+  .address, .phones, .email
+    @extend .didactic
+    font-size: 14px
+    line-height: 24px
+
+
+//hacks
+.customers
+  li.aa span
+    margin-left: -7px
+  li.citroen span
+    margin-left: -7px
+  li.pdvsa span
+    margin-left: -7px
+  li.psa span
+    margin-left: -7px
+  li.shell span
+    margin-left: -3px
+  li.ypf span
+    margin-left: -7px
+  li.iberia span
+    margin-left: -5px
+  li.pdv_sur span
+    margin-left: -4px
+  li.peugeot span
+    margin-left: -3px
+
+  
+.lang-switch
+  @extend .ubuntu
+  font-size: 11px
+  line-height: 15px
+  letter-spacing: 2px
+
+.logo
+  h2 a
+    +inline-block
+
+
+@each $l in es en
+  body.#{$l}
+    @each $s in home contact
+      section.#{$s} .logo h2 a 
+        +replace-text-with-dimensions("#{$l}/logo-#{$s}.png")
+        *font-size: 0 //ie hack
+        *text-indent: 0 //ie hack
+
+        
+

@@ -1,0 +1,8 @@
+.customers
+  %ul
+    - data.customers.each do |k,v|
+      %li{:class => "#{k}"}
+        %i{:class => "grey customers-#{k}"}
+        %i{:class => "red customers-#{k}_red"}
+        %span #{v}
+

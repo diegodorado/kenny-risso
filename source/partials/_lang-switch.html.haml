@@ -1,0 +1,4 @@
+.lang-switch
+  = link_to 'español', '/', :class=>('current' if @lang == :es)
+  %span &middot;
+  = link_to 'english', '/en', :class=>('current' if @lang == :en)
